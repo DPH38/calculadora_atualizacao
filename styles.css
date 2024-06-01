@@ -1,0 +1,216 @@
+* {
+    font-family: 'Roboto', sans-serif, Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator-container {
+    background-color: #256A9D;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, .3);
+    width: 600px;
+    height: 1000px auto;
+    margin: 30px auto;
+    width: 1000px auto;
+    backdrop-filter: blur(60px);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: xx-large;
+
+}
+
+.form-group label,
+input,
+.date-container label,
+input {
+    margin-bottom: 5px;
+    display: column;
+    padding: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-size: small;
+    font-family: 'arial';
+
+}
+
+input,
+select,
+button {
+    height: auto;
+    width: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+input:hover,
+select:hover,
+button:hover {
+    background-color: #a3d0e8;
+}
+
+.correcao {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.correction-index-cards,
+.date-container,
+button {
+    width: 100%;
+    /* Garante que os elementos ocupem toda a largura do contêiner */
+}
+
+button {
+    background-color: rgba(11, 46, 74, 0.5);
+    backdrop-filter: blur(10px);
+    border-color: #123548;
+    color: #e0eff7;
+    border: #a98400;
+    cursor: pointer;
+    font-size: medium;
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #123548;
+    border: 1px solid #123548;
+}
+
+.correction-index-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.correction-index-cards input[type="radio"] {
+    display: none;
+}
+
+.correction-index-cards .card {
+    flex: 1 1 calc(40% - 10px);
+    display: flex;
+    /* Torna o card um contêiner flexível */
+    justify-content: center;
+    /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+    /* Centraliza o conteúdo verticalmente */
+    padding: 5px;
+    border: 1px solid #123548;
+    border-radius: 15px;
+    text-align: center;
+    text-shadow: #000000;
+    cursor: pointer;
+    color: #f7efd2;
+    font-size: medium;
+    background-color: rgba(11, 46, 74, 0.5);
+    backdrop-filter: blur(10px);
+    font-size: small;
+    height: 25px;
+    width: 10px;
+}
+
+.correction-index-cards .card:hover {
+    background-color: #ffffff;
+    color: #123548;
+    border-color: #123548;
+}
+
+.correction-index-cards input[type="radio"]:checked+.card {
+    background-color: #ffffff;
+    color: #123548;
+    border-color: #123548;
+    border: 2px solid #000000;
+    backdrop-filter: blur(10px);
+    
+}
+
+.date-container {
+    display: flex;
+    flex-direction: row;
+    /* Altera a direção do fluxo de flexbox para a linha */
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    /* Altera a direção do fluxo de flexbox para a coluna */
+    flex: 1 1 calc(50% - 5px);
+    font-size: smaller;
+    cursor: pointer;
+    padding-top: 1px;
+    padding-bottom: 5px;
+}
+
+.input-container label {
+    font-size: smaller;
+    padding: 10px;
+}
+
+.input-container input {
+    margin: 0 5px;
+    /* Adiciona uma margem de 5px à esquerda e à direita do input */
+    width: calc(90% - 10px);
+    /* Subtrai a margem da largura total para alinhar com .correction-index-cards */
+}
+
+@media (max-width: 600px) {
+    .calculator-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .correction-index-cards .card {
+        flex: 1 1 calc(100% - 10px);
+        /* Faz com que os cartões ocupem 100% do espaço disponível em telas menores */
+    }
+
+    .input-container input {
+        width: calc(100% - 10px);
+        /* Ajusta a largura do input para 100% em telas menores */
+    }
+
+    button {
+        width: 100%;
+        /* Ajusta a largura do botão para 100% em telas menores */
+    }
+}
+
+.input-container {
+    width: 50%;
+    padding: auto;
+}
+
+.value-container input {
+    width: 100%;
+    /* Ajusta a largura do input para ocupar 100% da largura do contêiner */
+    height: 40px;
+    /* Ajusta a altura do input para 40px */
+    /* outras propriedades... */
+    font-size: x-large;
+}

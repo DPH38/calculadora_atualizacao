@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Financeira</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="calculator-container">
+      <h1>Atualize seu Valor</h1>
+      <form id="financial-calculator">
+        <div class="form-group">
+          <div class="value-container">
+            <label for="financial-value">INSIRA O VALOR INICIAL:</label>
+            <input
+              type="text"
+              id="financial-value"
+              name="financial-value"
+              required
+            />
+          </div>
+        </div>
+        <div class="correcao">
+          <div class="form-group">
+            <label>SELECIONE O ÍNDICE DE CORREÇÃO:</label>
+            <div class="correction-index-cards">
+              <input
+                type="radio"
+                id="index1"
+                name="correction-index"
+                value="188"
+                required
+              />
+              <label for="index1" class="card">INPC</label>
+
+              <input
+                type="radio"
+                id="index2"
+                name="correction-index"
+                value="189"
+              />
+              <label for="index2" class="card">IGP-M</label>
+
+              <input
+                type="radio"
+                id="index3"
+                name="correction-index"
+                value="TJPR"
+              />
+              <label for="index3" class="card">ÍNDICE DO TJ/PR</label>
+
+              <input
+                type="radio"
+                id="index4"
+                name="correction-index"
+                value="433"
+              />
+              <label for="index4" class="card">IPCA</label>
+            </div>
+          </div>
+          <div class="date-container">
+            <div class="input-container">
+              <label for="start-date">Data de início</label>
+              <input id="start-date" type="date" />
+            </div>
+            <div class="input-container">
+              <label for="end-date">Data de término</label>
+              <input id="end-date" type="date" />
+            </div>
+          </div>
+          <button type="submit">Calcular</button>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-masker@1.2.0/build/vanilla-masker.min.js"></script>
+    <script src="./masks.js"></script>
+    <script src="./api_request.js"></script>
+  </body>
+</html>
