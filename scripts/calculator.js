@@ -13,12 +13,11 @@ class UpdateValues {
 
     // Inicializa os elementos do DOM
     initElements() {
-        this.financialValue = document.getElementById('financial-value');
-        this.index = document.querySelector('input[name="correction-index-cards"]:checked').value;
-        this.startDate = document.getElementById('start-date');
-        this.endDate = document.getElementById('end-date');
-        this.buttonUpdate = document.querySelector('button[type="submit"]');
-
+        this.financialValue = document.getElementById('financialValue');
+        let radioButton = document.querySelector('input[name="correction-index-cards"]:checked');
+        this.index = radioButton ? radioButton.value : null;
+        this.startDate = document.getElementById('startDate');
+        this.endDate = document.getElementById('endDate');
     };
 
     // Inicializa os eventos
