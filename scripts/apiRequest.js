@@ -1,5 +1,5 @@
 
-const dataApi = async () => {
+const dataApi = async (index, startDate, endDate) => {
     try {
         const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${index}/dados?formato=json&dataInicial=${startDate}&dataFinal=${endDate}`;
         const response = await fetch(url);
@@ -9,7 +9,7 @@ const dataApi = async () => {
         const data = await response.json();
         return data;
     } catch (error) {
-        window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
+        throw new Error(`Serviço indisponível no momento, tente novamente mais tarde.`);
     }
 };
 
@@ -21,7 +21,9 @@ export const apiRequest = async (index, startDate, endDate) => {
             const result = await dataApi(index, startDate, endDate);
             return result;
         } catch (error) {
-            console.error(`Error in dataApi: ${error.message}`); 
+            console.error(`Error in dataApi: ${error.message}`);
+            window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
+            location.reload(); // Recarrega a página
         }
     }
 };

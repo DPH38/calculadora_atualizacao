@@ -67,17 +67,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-document.querySelector('button[type="submit"]').addEventListener('click', function(event) {
-    var financialValue = document.getElementById('financial-value');
-    var correctionIndex = document.querySelectorAll('input[type=radio][name="correction-index"]');
-    var startDate = document.getElementById('start-date');
-    var endDate = document.getElementById('end-date');
-
-    var isCorrectionIndexChecked = Array.prototype.slice.call(correctionIndex).some(x => x.checked);
-
-    if (!financialValue.value || !isCorrectionIndexChecked || !startDate.value || !endDate.value) {
-        alert('Por favor, preencha todos os campos antes de calcular.');
-        event.preventDefault();
-    }
-});
