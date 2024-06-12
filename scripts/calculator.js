@@ -8,6 +8,10 @@ class UpdateValues {
 
         // Inicializa os eventos
         this.initEvents();
+
+        // Inicializa o estado
+        this.hasCalculated = false;
+
     };
 
     // Inicializa os elementos do DOM
@@ -20,13 +24,7 @@ class UpdateValues {
 
     // Inicializa os eventos
     initEvents() {
-        console.log('Initializing events...'); // Adicionado para depuração
-        this.financialValue.addEventListener('input', this.updateValues.bind(this));
-        document.querySelectorAll('input[name="correction-index"]').forEach((element) => {
-            element.addEventListener('change', this.updateValues.bind(this));
-        });
-        this.startDate.addEventListener('input', this.updateValues.bind(this));
-        this.endDate.addEventListener('input', this.updateValues.bind(this));
+        // Nenhum evento para inicializar
     };
 
     // Função para formatar a data no padrão local
@@ -39,13 +37,9 @@ class UpdateValues {
     async updateValues() {
         console.log('Updating values...'); // Adicionado para depuração
 
-        console.log(`original valor:  ${this.financialValue.value}`); // Adicionado para depuração
-
         // Função para trocar vírgulas por pontos e vice-versa
         function swapCommaAndDot(str) {
-            return str.replace(/[.,]/g, function (match) {
-                return match === '.' ? ',' : '.';
-            });
+            return str.replace(/\./g, '').replace(/,/g, '.');
         }
 
         const financialValue = parseFloat(swapCommaAndDot(this.financialValue.value));
@@ -60,11 +54,6 @@ class UpdateValues {
         const formattedStartDate = this.formatDate(startDate);
         const formattedEndDate = this.formatDate(endDate);
 
-        console.log(`financialValue: ${financialValue}`); // Adicionado para depuração
-        console.log(`formattedStartDate: ${formattedStartDate}`); // Adicionado para depuração
-        console.log(`formattedEndDate: ${formattedEndDate}`); // Adicionado para depuração
-        console.log(`index: ${index}`); // Adicionado para depuração
-
         try {
             const indexNumber = await apiRequest(index, formattedStartDate, formattedEndDate);
             console.log(indexNumber);
@@ -73,8 +62,18 @@ class UpdateValues {
             window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
             location.reload(); // Recarrega a página
         }
+
+        this.hasCalculated = true;
     };
 
+    // Manipula a entrada
+    handleInput() {
+        if (this.hasCalculated) {
+            location.reload();
+        } else {
+            this.updateValues();
+        }
+    }
 };
 
 export const startUpdateValues = () => {
