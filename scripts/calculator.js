@@ -29,16 +29,6 @@ class UpdateValues {
         this.endDate.addEventListener('input', this.updateValues.bind(this));
     };
 
-    // Validar se todos os valores estão preenchidos
-    checkValues() {
-        console.log('Checking values...'); // Adicionado para depuração
-        if (this.financialValue.value === '' || this.startDate.value === '' || this.endDate.value === '') {
-            alert('Por favor, preencha todos os campos obrigatórios antes de submeter!');
-            return false;
-        }
-        return true;
-    };
-
     // Função para formatar a data no padrão local
     formatDate(dateString) {
         const [year, month, day] = dateString.split('-');
@@ -49,7 +39,16 @@ class UpdateValues {
     async updateValues() {
         console.log('Updating values...'); // Adicionado para depuração
 
-        const financialValue = parseFloat(this.financialValue.value);
+        console.log(`original valor:  ${this.financialValue.value}`); // Adicionado para depuração
+
+        // Função para trocar vírgulas por pontos e vice-versa
+        function swapCommaAndDot(str) {
+            return str.replace(/[.,]/g, function (match) {
+                return match === '.' ? ',' : '.';
+            });
+        }
+
+        const financialValue = parseFloat(swapCommaAndDot(this.financialValue.value));
 
         // Obter o índice selecionado, se nenhum for selecionado, definir como string vazia
         const selectedIndex = document.querySelector('input[name="correction-index"]:checked');
@@ -102,7 +101,6 @@ export const startUpdateValues = () => {
             }
             event.preventDefault();
         }
-
 
         else {
             let updateValuesInstance = new UpdateValues();

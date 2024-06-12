@@ -16,7 +16,17 @@ const dataApi = async (index, startDate, endDate) => {
 export const apiRequest = async (index, startDate, endDate) => {
     if (index === '') {
         return 1.00000;
-    } else {
+    } if (index === 'tjpr') {
+        const values = ['190', '188'];
+        const results = [];
+        for (const value of values) {
+            const result = await dataApi(value, startDate, endDate);
+            results.push(result);
+        }
+        return results;
+    }
+
+    else {
         try {
             const result = await dataApi(index, startDate, endDate);
             return result;
