@@ -33,7 +33,7 @@ class UpdateValues {
     checkValues() {
         console.log('Checking values...'); // Adicionado para depuração
         if (this.financialValue.value === '' || this.startDate.value === '' || this.endDate.value === '') {
-            alert('Por favor, preencha todos os campos antes de submeter!');
+            alert('Por favor, preencha todos os campos obrigatórios antes de submeter!');
             return false;
         }
         return true;
@@ -51,15 +51,12 @@ class UpdateValues {
 
         const financialValue = parseFloat(this.financialValue.value);
 
-        // Obter o índice selecionado
+        // Obter o índice selecionado, se nenhum for selecionado, definir como string vazia
         const selectedIndex = document.querySelector('input[name="correction-index"]:checked');
-        const index = selectedIndex ? selectedIndex.value : null;
+        const index = selectedIndex ? selectedIndex.value : '';
 
         const startDate = this.startDate.value;
         const endDate = this.endDate.value;
-
-        console.log(`startDate original: ${startDate}`); // Adicionado para depuração
-        console.log(`endDate original: ${endDate}`); // Adicionado para depuração
 
         const formattedStartDate = this.formatDate(startDate);
         const formattedEndDate = this.formatDate(endDate);
@@ -74,6 +71,8 @@ class UpdateValues {
             console.log(indexNumber);
         } catch (error) {
             console.error(`Error in apiRequest: ${error.message}`);
+            window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
+            location.reload(); // Recarrega a página
         }
     };
 
@@ -86,13 +85,26 @@ export const startUpdateValues = () => {
         var startDate = document.getElementById('start-date');
         var endDate = document.getElementById('end-date');
 
-        var isCorrectionIndexChecked = Array.prototype.slice.call(correctionIndex).some(x => x.checked);
-
-        if (!financialValue.value || !isCorrectionIndexChecked || !startDate.value || !endDate.value) {
+        // Obrigated fields
+        if (!financialValue.value || !startDate.value || !endDate.value) {
             console.log('Not all fields are filled'); // Adicionado para depuração
-            alert('Por favor, preencha todos os campos antes de calcular.');
+            alert('Por favor, preencha todos os campos obrigatórios antes de calcular.');
+
+            // Add 'input-error' class to fields that are not filled
+            if (!financialValue.value) {
+                financialValue.classList.add('input-error');
+            }
+            if (!startDate.value) {
+                startDate.classList.add('input-error');
+            }
+            if (!endDate.value) {
+                endDate.classList.add('input-error');
+            }
             event.preventDefault();
-        } else {
+        }
+
+
+        else {
             let updateValuesInstance = new UpdateValues();
             updateValuesInstance.updateValues();
             event.preventDefault(); // Adicionado para prevenir o comportamento padrão do submit

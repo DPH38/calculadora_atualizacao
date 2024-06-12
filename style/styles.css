@@ -214,3 +214,8 @@ button:hover {
     /* outras propriedades... */
     font-size: x-large;
 }
+
+
+.input-error {
+    background-color: rgb(255, 182, 182);
+}
