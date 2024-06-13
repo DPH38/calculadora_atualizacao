@@ -1,18 +1,37 @@
 
+const CACHE_NAME = 'api-cache'; 
+
+
 const dataApi = async (index, startDate, endDate) => {
-    try {
-        const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${index}/dados?formato=json&dataInicial=${startDate}&dataFinal=${endDate}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data); // Adicionado para depuração
-        console.log(`data final ${endDate}`); // Adicionado para depuração
-        return data;
-    } catch (error) {
-        throw new Error(`Serviço indisponível no momento, tente novamente mais tarde.`);
+    const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${index}/dados?formato=json&dataInicial=${startDate}&dataFinal=${endDate}`;
+
+    // Primeiro, tentamos buscar os dados do cache
+    const cache = await caches.open(CACHE_NAME);
+    const cachedResponse = await cache.match(url);
+
+    if (cachedResponse && cachedResponse.ok) {
+        console.log('Dados obtidos do cache'); // Adicionado para depuração
+        return cachedResponse.json(); // Retorna os dados do cache se estiverem disponíveis
     }
+
+    // Se os dados não estiverem no cache, buscamos da API
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Clonamos a resposta antes de ler o corpo
+    const responseClone = response.clone();
+
+    // Colocamos os dados da API no cache para uso futuro
+    cache.put(url, responseClone);
+
+    console.log('Dados obtidos da API'); // Adicionado para depuração
+
+    const data = await response.json();
+
+    return data;
 };
 
 export const apiRequest = async (index, startDate, endDate) => {
@@ -49,6 +68,8 @@ export const apiRequest = async (index, startDate, endDate) => {
 
 };
 
+
+
 const acummulatedIndex = async (index, data, endDate) => {
     function modifiedArray(data) {
         // Pega o último elemento do array
@@ -83,6 +104,25 @@ const acummulatedIndex = async (index, data, endDate) => {
         return modifiedArray(data);
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
