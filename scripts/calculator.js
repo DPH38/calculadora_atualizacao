@@ -9,9 +9,6 @@ class UpdateValues {
         // Inicializa os eventos
         this.initEvents();
 
-        // Inicializa o estado
-        this.hasCalculated = false;
-
     };
 
     // Inicializa os elementos do DOM
@@ -63,23 +60,13 @@ class UpdateValues {
             location.reload(); // Recarrega a página
         }
 
-        this.hasCalculated = true;
     };
 
-    // Manipula a entrada
-    handleInput() {
-        if (this.hasCalculated) {
-            location.reload();
-        } else {
-            this.updateValues();
-        }
-    }
 };
 
 export const startUpdateValues = () => {
     document.querySelector('#financial-calculator').addEventListener('submit', (event) => {
         var financialValue = document.getElementById('financial-value');
-        var correctionIndex = document.querySelectorAll('input[type=radio][name="correction-index"]');
         var startDate = document.getElementById('start-date');
         var endDate = document.getElementById('end-date');
 

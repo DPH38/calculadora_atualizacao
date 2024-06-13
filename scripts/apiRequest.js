@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'api-cache'; 
+const CACHE_NAME = 'api-cache';
 
 
 const dataApi = async (index, startDate, endDate) => {
@@ -11,7 +11,7 @@ const dataApi = async (index, startDate, endDate) => {
 
     if (cachedResponse && cachedResponse.ok) {
         console.log('Dados obtidos do cache'); // Adicionado para depuração
-        return cachedResponse.json(); // Retorna os dados do cache se estiverem disponíveis
+        return await cachedResponse.json(); // Retorna os dados do cache se estiverem disponíveis
     }
 
     // Se os dados não estiverem no cache, buscamos da API
@@ -25,7 +25,7 @@ const dataApi = async (index, startDate, endDate) => {
     const responseClone = response.clone();
 
     // Colocamos os dados da API no cache para uso futuro
-    cache.put(url, responseClone);
+    await cache.put(url, responseClone);
 
     console.log('Dados obtidos da API'); // Adicionado para depuração
 
@@ -35,7 +35,7 @@ const dataApi = async (index, startDate, endDate) => {
 };
 
 export const apiRequest = async (index, startDate, endDate) => {
-    if ((index === '') || ((startDate[3] === endDate[3]) && startDate[4] === endDate[4])) {
+    if ((index === '') || ((startDate[3] === endDate[3]) && (startDate[4] === endDate[4]) && (startDate[8] === endDate[8]) && (startDate[9] === endDate[9]))) {
         return parseFloat(1.00000);
     }
     if (index === 'tjpr') {
@@ -43,21 +43,19 @@ export const apiRequest = async (index, startDate, endDate) => {
         const results = [];
         for (const value of values) {
             try {
-                const result = await dataApi(value, startDate, endDate);
-                results.push(result);
+                results.push(await acummulatedIndex(await dataApi(value, startDate, endDate), endDate));
             } catch (error) {
                 console.error(`Error in dataApi: ${error.message}`); // Adicionado para depuração
                 window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
                 location.reload(); // Recarrega a página
             }
         };
-        return await acummulatedIndex(index, results);
-
+        return (results[0] + results[1]) / 2;
     }
 
     else {
         try {
-            return await acummulatedIndex(index, await dataApi(index, startDate, endDate), endDate);
+            return await acummulatedIndex(await dataApi(index, startDate, endDate), endDate);
 
         } catch (error) {
             console.error(`Error in dataApi: ${error.message}`);
@@ -65,12 +63,10 @@ export const apiRequest = async (index, startDate, endDate) => {
             location.reload(); // Recarrega a página
         };
     };
-
 };
 
+const acummulatedIndex = async (data, endDate) => {
 
-
-const acummulatedIndex = async (index, data, endDate) => {
     function modifiedArray(data) {
         // Pega o último elemento do array
         let lastElement = data[data.length - 1].data;
@@ -87,6 +83,11 @@ const acummulatedIndex = async (index, data, endDate) => {
             data.pop();
         }
 
+        return data;
+    };
+
+    function indexNumber(data) {
+
         let accumulatedIndex = 1; // Inicializa o índice acumulado
 
         // Itera sobre o array de objetos do último para o primeiro
@@ -95,15 +96,12 @@ const acummulatedIndex = async (index, data, endDate) => {
             accumulatedIndex *= (parseFloat(item.valor) / 100) + 1;
         }, []);
 
-        if (index !== 'tjpr') {
-            return accumulatedIndex.toFixed(6);
-        }
+        return accumulatedIndex;
     };
 
-    if (index !== 'tjpr') {
-        return modifiedArray(data);
-    }
+    return indexNumber(modifiedArray(data));
 };
+
 
 
 
