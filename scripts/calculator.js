@@ -5,10 +5,6 @@ class UpdateValues {
     constructor() {
         // Inicializa os elementos do DOM
         this.initElements();
-
-        // Inicializa os eventos
-        this.initEvents();
-
     };
 
     // Inicializa os elementos do DOM
@@ -17,11 +13,6 @@ class UpdateValues {
         this.financialValue = document.getElementById('financial-value');
         this.startDate = document.getElementById('start-date');
         this.endDate = document.getElementById('end-date');
-    };
-
-    // Inicializa os eventos
-    initEvents() {
-        // Nenhum evento para inicializar
     };
 
     // Função para formatar a data no padrão local
@@ -53,7 +44,8 @@ class UpdateValues {
 
         try {
             const indexNumber = await apiRequest(index, formattedStartDate, formattedEndDate);
-            console.log(indexNumber);
+            console.log(`Index number: ${indexNumber.accumulatedIndex}`); // Adicionado para depuração
+            console.log(`data base: ${indexNumber.baseDate}`); // Adicionado para depuração
         } catch (error) {
             console.error(`Error in apiRequest: ${error.message}`);
             window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
@@ -95,3 +87,7 @@ export const startUpdateValues = () => {
         }
     });
 };
+
+
+
+

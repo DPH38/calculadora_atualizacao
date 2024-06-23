@@ -36,10 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (startDate < minDate) {
             alert('A data de início não pode ser anterior a 01/08/1994');
             this.value = '';
-        } else if (startDate > new Date()) {
-            alert('A data de início não pode ser posterior a hoje');
-            this.value = '';
-        } else if (startDate > endDate) {
+        } //else if (startDate > new Date()) {
+           // alert('A data de início não pode ser posterior a hoje');
+         //   this.value = '';
+       // } 
+        else if (startDate > endDate) {
             alert('A data de início não pode ser posterior à data de término');
             this.value = '';
         }
@@ -57,10 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (endDate < minDate) {
             alert('A data de término não pode ser anterior a 01/08/1994');
             this.value = '';
-        } else if (endDate > today) {
-            alert('A data de término não pode ser posterior a hoje');
-            this.value = '';
-        } else if (endDate <= startDate) {
+        } //else if (endDate > today) {
+            //alert('A data de término não pode ser posterior a hoje');
+            //this.value = '';
+        //}
+         else if (endDate <= startDate) {
             alert('A data de término deve ser posterior à data de início');
             this.value = '';
         }
