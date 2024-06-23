@@ -218,3 +218,30 @@ button:hover {
 .input-error {
     background-color: rgb(255, 182, 182);
 }
+
+.result-container {
+    display: none;
+}
+
+
+.display-active {
+    display: block; /* Ou qualquer outra propriedade de display que desejar */
+    border: 1px solid #ffffff; /* Exemplo de borda */
+    background-color: #256A9D; /* Exemplo de cor de fundo */
+    color: #ffffff;
+    border-radius: 20px; 
+    padding: 10px;
+    height: 1000px auto;
+    margin: 25px auto;
+    width: 1000px auto;
+}
+
+.result-container.display-active p {
+    margin-left: 30px; /* Mantém o ajuste para empurrar o texto mais para a direita */
+    font-size: medium; /* Considerar aumentar se necessário para melhor legibilidade */
+    color: rgb(255, 255, 255); /* Mantém a cor branca para contraste */
+    line-height: 1.6; /* Aumenta o espaçamento entre as linhas */
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra ao texto para destacá-lo */
+    padding: 1px 0; /* Adiciona um pouco de espaço acima e abaixo do texto */
+    transition: all 0.5s ease; /* Suaviza a transição de estilos */
+}

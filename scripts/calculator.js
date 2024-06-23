@@ -23,12 +23,17 @@ class UpdateValues {
 
     // Atualiza os valores
     async updateValues() {
-        console.log('Updating values...'); // Adicionado para depuração
-
-        // Função para trocar vírgulas por pontos e vice-versa
         function swapCommaAndDot(str) {
             return str.replace(/\./g, '').replace(/,/g, '.');
         }
+
+        const indexMapping = {
+            '188': 'INPC',
+            '189': 'IGP-M',
+            'tjpr': 'TJPR',
+            '433': 'IPCA',
+            "": ""
+          };
 
         const financialValue = parseFloat(swapCommaAndDot(this.financialValue.value));
 
@@ -42,16 +47,24 @@ class UpdateValues {
         const formattedStartDate = this.formatDate(startDate);
         const formattedEndDate = this.formatDate(endDate);
 
-        try {
-            const indexNumber = await apiRequest(index, formattedStartDate, formattedEndDate);
-            console.log(`Index number: ${indexNumber.accumulatedIndex}`); // Adicionado para depuração
-            console.log(`data base: ${indexNumber.baseDate}`); // Adicionado para depuração
-        } catch (error) {
-            console.error(`Error in apiRequest: ${error.message}`);
-            window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
-            location.reload(); // Recarrega a página
-        }
+        const adjustnumbers = await apiRequest(index, formattedStartDate, formattedEndDate);
 
+
+        // multiplicar o valor financeiro pelo índice
+        const adjustedValue = financialValue * adjustnumbers.accumulatedIndex;
+        const localDate = adjustnumbers.baseDate.toLocaleDateString('pt-BR', {
+            month: 'long',
+            year: 'numeric'
+        });
+
+        // Atribuir valores aos spans
+        document.getElementById('basevalue').textContent = financialValue.toFixed(2).replace('.', ',');
+        document.getElementById('correctionindex').textContent = adjustnumbers.accumulatedIndex.toFixed(6);
+        document.getElementById('correctedvalue').textContent = adjustedValue.toFixed(2).replace('.', ',');
+        document.getElementById('base-date').textContent = localDate;
+        document.getElementById('index-name').textContent =  indexMapping[index];
+
+        document.querySelector('.result-container').classList.add('display-active');
     };
 
 };

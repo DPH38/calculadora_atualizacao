@@ -1,5 +1,10 @@
 const CACHE_NAME = "api-cache";
 
+/**
+ * Array containing objects representing historical data for TJPR, these values aren't available in the API.
+ *
+ * @type {Array<{data: string, valor: number}>}
+ */
 const tjprBefore = [
     {
         data: "01/06/1995",
@@ -49,6 +54,13 @@ const tjprBefore = [
 
 const pause = (duration) => new Promise((res) => setTimeout(res, duration));
 
+/**
+ * Fetches data from an API based on the provided index, start date, and end date.
+ * @param {string} index - The index of the data to fetch.
+ * @param {string} startDate - The start date of the data range.
+ * @param {string} endDate - The end date of the data range.
+ * @returns {Promise<any>} - A promise that resolves to the fetched data.
+ */
 const dataApi = async (index, startDate, endDate) => {
     const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${index}/dados?formato=json&dataInicial=${startDate}&dataFinal=${endDate}`;
 
@@ -182,9 +194,21 @@ export const apiRequest = async (index, startDate, endDate) => {
         }
     }
 };
+/**
+ * Calculates the accumulated index based on the provided data and end date.
+ *
+ * @param {Array} data - The data array containing index values.
+ * @param {string} endDate - The end date in string format (YYYY-MM-DD).
+ * @returns {Object} An object containing the accumulated index and the base date.
+ */
 const acummulatedIndex = async (data, endDate) => {
     let baseDate;
 
+    /**
+     * Modifies the input data array based on the last date in the array and the end date.
+     * @param {Array} data - The input data array.
+     * @returns {Array} - The modified data array.
+     */
     function modifiedArray(data) {
 
         let jsonApiLastDate = data[data.length - 1].data;
@@ -208,6 +232,11 @@ const acummulatedIndex = async (data, endDate) => {
         }
         return data;
     }
+    /**
+     * Calculates the accumulated index based on the provided data.
+     * @param {Array} data - The data array containing objects with a 'valor' property.
+     * @returns {number} The accumulated index.
+     */
     function indexNumber(data) {
         let accumulatedIndex = 1;
         data.reduceRight((_, item, i) => {
