@@ -66,17 +66,19 @@
           </div>
           <div class="date-container">
             <div class="input-container">
-              <label for="start-date">Data de início</label>
+              <label for="start-date">Data de início - correção monetária</label>
               <input id="start-date" type="date" />
             </div>
             <div class="input-container">
-              <label for="end-date">Data de término</label>
+              <label for="end-date">Data de término - correção monetária</label>
               <input id="end-date" type="date" />
             </div>
           </div>
           <button type="submit">Calcular</button>
         </div>
       </form>
+      <div id="error-message" class="error-message" style="display: none;">
+      </div>
       <div class="result-container">
           <h3>RESULTADO:</h3>
           <p>Valor base em <span id="initialbase"></span>:  R$ <span id="basevalue"></span></p>
