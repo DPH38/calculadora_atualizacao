@@ -94,7 +94,7 @@ function monthDiff(date1, date2) {
     return diffMonths;
 }
 
-function convertStringToDate(dateString) {
+export function convertStringToDate(dateString) {
     const dateParts = dateString.split("/");
     return new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 }

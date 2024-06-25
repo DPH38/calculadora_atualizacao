@@ -1,4 +1,4 @@
-import { apiRequest } from './apiRequest.js';
+import { apiRequest, convertStringToDate } from './apiRequest.js';
 
 class UpdateValues {
 
@@ -49,20 +49,28 @@ class UpdateValues {
 
         const adjustnumbers = await apiRequest(index, formattedStartDate, formattedEndDate);
 
-
         // multiplicar o valor financeiro pelo índice
         const adjustedValue = financialValue * adjustnumbers.accumulatedIndex;
-        const localDate = adjustnumbers.baseDate.toLocaleDateString('pt-BR', {
+
+        const localDateStart = convertStringToDate(formattedStartDate).toLocaleDateString('pt-BR', {
             month: 'long',
             year: 'numeric'
         });
 
+        const localDateEnd = adjustnumbers.baseDate.toLocaleDateString('pt-BR', {
+            month: 'long',
+            year: 'numeric'
+        });
+
+
+
         // Atribuir valores aos spans
-        document.getElementById('basevalue').textContent = financialValue.toFixed(2).replace('.', ',');
+        document.getElementById('basevalue').textContent = financialValue.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         document.getElementById('correctionindex').textContent = adjustnumbers.accumulatedIndex.toFixed(6);
-        document.getElementById('correctedvalue').textContent = adjustedValue.toFixed(2).replace('.', ',');
-        document.getElementById('base-date').textContent = localDate;
+        document.getElementById('correctedvalue').textContent = adjustedValue.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        document.getElementById('base-date').textContent = localDateEnd;
         document.getElementById('index-name').textContent =  indexMapping[index];
+        document.getElementById('initialbase').textContent = localDateStart;
 
         document.querySelector('.result-container').classList.add('display-active');
     };
