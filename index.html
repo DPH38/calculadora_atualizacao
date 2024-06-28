@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style/styles.css" />
-    <link rel="icon" href="data:,">
+    <link rel="icon" href="data:," />
   </head>
   <body>
     <div class="calculator-container">
@@ -22,6 +22,7 @@
               type="text"
               id="financial-value"
               name="financial-value"
+              required
             />
           </div>
         </div>
@@ -38,7 +39,6 @@
                 value="188"
               />
               <label for="index1" class="card">INPC</label>
-
               <input
                 type="radio"
                 id="index2"
@@ -46,7 +46,6 @@
                 value="189"
               />
               <label for="index2" class="card">IGP-M</label>
-
               <input
                 type="radio"
                 id="index3"
@@ -54,7 +53,6 @@
                 value="tjpr"
               />
               <label for="index3" class="card">ÍNDICE DO TJ/PR</label>
-
               <input
                 type="radio"
                 id="index4"
@@ -66,7 +64,9 @@
           </div>
           <div class="date-container">
             <div class="input-container">
-              <label for="start-date">Data de início - correção monetária</label>
+              <label for="start-date"
+                >Data de início - correção monetária</label
+              >
               <input id="start-date" type="date" />
             </div>
             <div class="input-container">
@@ -74,17 +74,66 @@
               <input id="end-date" type="date" />
             </div>
           </div>
-          <button type="submit">Calcular</button>
         </div>
+        <div class="date-interestrate">
+          <div class="rate-group rate05">
+            <div class="label-container">
+              <label>JUROS DE 0,5% A.M:</label>
+            </div>
+            <div class="input-pair05">
+              <div class="input-container">
+                <label for="rate05start"
+                  >Data de início - juros de 0,5% a.m</label
+                >
+                <input id="rate05start" type="date" />
+              </div>
+              <div class="input-container">
+                <label for="rate05end"
+                  >Data de término - juros de 0,5% a.m</label
+                >
+                <input id="rate05end" type="date" />
+              </div>
+            </div>
+          </div>
+          <div class="rate-group rate1">
+            <div class="label-container">
+              <label>JUROS DE 1,0% A.M:</label>
+            </div>
+            <div class="input-pair01">
+              <div class="input-container">
+                <label for="rate1start"
+                  >Data de início - juros de 1,0% a.m</label
+                >
+                <input id="rate1start" type="date" />
+              </div>
+              <div class="input-container">
+                <label for="rate1end"
+                  >Data de término - juros de 1,0% a.m</label
+                >
+                <input id="rate1end" type="date" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit">Calcular</button>
       </form>
-      <div id="error-message" class="error-message" style="display: none;">
-      </div>
+      <div id="error-message" class="error-message"></div>
       <div class="result-container">
-          <h3>RESULTADO:</h3>
-          <p>Valor base em <span id="initialbase"></span>:  R$ <span id="basevalue"></span></p>
-          <p>Índice de correção (<span id="index-name"></span>) : <span id="correctionindex"></span> </p>
-          <p>Valor corrigido em <span id="base-date"></span>: R$ <span id="correctedvalue"></span></p>
-     </div>
+        <h3>RESULTADO:</h3>
+        <p>
+          Valor base em <span id="initialbase"></span>: R$
+          <span id="basevalue"></span>
+        </p>
+        <p>
+          Índice de correção (<span id="index-name"></span>) :
+          <span id="correctionindex"></span>
+        </p>
+        <p>
+          Valor corrigido em <span id="base-date"></span>: R$
+          <span id="correctedvalue"></span>
+        </p>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-masker@1.2.0/build/vanilla-masker.min.js"></script>
     <script src="scripts/masks.js"></script>
     <script type="module" src="scripts/init.js"></script>

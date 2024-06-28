@@ -3,7 +3,6 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #000000;
     display: flex;
     justify-content: center;
@@ -15,10 +14,11 @@ body {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255, 255, 255, .3);
-    width: 600px;
-    height: 1000px auto;
     margin: 30px auto;
-    width: 1000px auto;
+    width: 700px;
+    /* Corrigido para um valor válido */
+    height: 750px;
+    /* Ajuste conforme necessário */
     backdrop-filter: blur(60px);
 }
 
@@ -34,25 +34,20 @@ h1 {
 input,
 .date-container label,
 input {
-    margin-bottom: 5px;
-    display: column;
+    margin-bottom: 6px;
     padding: 5px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #ffffff;
     font-size: small;
-    font-family: 'arial';
-
 }
 
 input,
 select,
 button {
-    height: auto;
-    width: 100%;
     padding: 7px;
     box-sizing: border-box;
     border-radius: 10px;
@@ -89,13 +84,12 @@ button {
     cursor: pointer;
     font-size: medium;
     padding: 10px;
-    width: 50%;
     margin: auto;
 }
 
 button:hover {
-    background-color: #ffffff;
-    color: #123548;
+    background-color: #ad212b;
+    color: #ffffff;
     border: 1px solid #123548;
 }
 
@@ -121,10 +115,8 @@ button:hover {
     border: 1px solid #123548;
     border-radius: 15px;
     text-align: center;
-    text-shadow: #000000;
     cursor: pointer;
     color: #f7efd2;
-    font-size: medium;
     background-color: rgba(11, 46, 74, 0.5);
     backdrop-filter: blur(10px);
     font-size: small;
@@ -144,27 +136,85 @@ button:hover {
     border-color: #123548;
     border: 2px solid #000000;
     backdrop-filter: blur(10px);
-    
+
 }
 
 .date-container {
     display: flex;
-    flex-direction: row;
-    /* Altera a direção do fluxo de flexbox para a linha */
-    justify-content: space-between;
-    padding: 10px;
+}
 
+input[type="date"] {
+    margin-top: 5px;
+    /* Espaço entre o label e o input */
 }
 
 .input-container {
     display: flex;
-    flex-direction: column;
-    /* Altera a direção do fluxo de flexbox para a coluna */
     flex: 1 1 calc(50% - 5px);
     font-size: smaller;
     cursor: pointer;
     padding-top: 1px;
     padding-bottom: 5px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.date-interestrate {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+.rate-group.rate05,
+.rate-group.rate1 {
+    flex: 1 1 auto;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    margin: 5px;
+    padding: 10px;
+
+}
+
+.input-pair05,
+.input-pair01 {
+    display: flex;
+    align-items: center;
+}
+
+
+.label-container {
+    display: flex;
+    font-size: smaller;
+    padding-top: 1px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+
+.input-pair01 label,
+.input-pair05 label {
+    font-size: smaller;
+    padding: 10px;
+    /* Adiciona uma margem à direita do label */
+}
+
+#rate1start,
+#rate1end,
+#rate05end,
+#rate05start {
+    margin: 0 5px;
+    width: calc(90% - 10px);
+}
+
+.input-pair input {
+    margin-top: 0;
+    /* Reduz a margem superior do input */
 }
 
 .input-container label {
@@ -201,10 +251,6 @@ button:hover {
     }
 }
 
-.input-container {
-    width: 50%;
-    padding: auto;
-}
 
 .value-container input {
     width: 100%;
@@ -226,40 +272,53 @@ button:hover {
 .display-active {
     display: block;
     border: 1.5px solid #000000;
-    background-color: #f8f8f8; /* Fundo cinza claro para suavidade */
+    background-color: #f8f8f8;
+    /* Fundo cinza claro para suavidade */
     color: #333333;
-    border-radius: 20px; 
+    border-radius: 20px;
     padding: 20px;
     margin: 25px auto;
     max-width: 600px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Sombra mais pronunciada */
 }
 
 .result-container.display-active h3 {
-    font-size: 1.4em; /* Tamanho do título maior */
-    margin-bottom: 15px; /* Maior espaçamento abaixo do título */
-    color: #007bff; /* Cor azul para destaque */
-    text-align: left; /* Centraliza o título */
+    font-size: 1.4em;
+    /* Tamanho do título maior */
+    margin-bottom: 15px;
+    /* Maior espaçamento abaixo do título */
+    color: #007bff;
+    /* Cor azul para destaque */
+    text-align: left;
+    /* Centraliza o título */
 }
 
 .result-container.display-active p {
-    margin: 10px 0; /* Ajuste de margens verticais */
-    font-size: 1em; /* Tamanho da fonte consistente */
-    color: #333333; /* Cor do texto mais suave */
+    margin: 10px 0;
+    /* Ajuste de margens verticais */
+    font-size: 1em;
+    /* Tamanho da fonte consistente */
+    color: #333333;
+    /* Cor do texto mais suave */
     line-height: 1.6;
     padding: 5px 0;
-    transition: all 0.5s ease;
+    transition: all 0.1s ease;
     margin-left: 15px;
 }
 
 .result-container.display-active span {
-    color:  #000000;
+    color: #000000;
 }
 
 .error-message {
-    color: #c30046; /* Cor da fonte */
-    margin: 10px 0; /* Espaçamento */
-    text-align: center; /* Centraliza o texto */
-    font-size: 1.2em; /* Tamanho da fonte */
+    color: #c30046;
+    /* Cor da fonte */
+    margin: 10px 0;
+    /* Espaçamento */
+    text-align: center;
+    /* Centraliza o texto */
+    font-size: 1.2em;
+    /* Tamanho da fonte */
     background-color: #000000;
 }
