@@ -64,12 +64,36 @@ class UpdateValues {
         document.getElementById('base-date').textContent = localDateEnd;
         document.getElementById('index-name').textContent = indexMapping[index];
         document.getElementById('initialbase').textContent = localDateStart;
+        document.querySelector('.result-container').style.display = 'block';
         document.querySelector('.result-container').classList.add('display-active');
     };
 
 };
 
 export const startUpdateValues = () => {
+    var financialValue = document.getElementById('financial-value');
+    var startDate = document.getElementById('start-date');
+    var endDate = document.getElementById('end-date');
+
+    // Adiciona um ouvinte de evento 'input' para remover a classe 'input-error' quando o campo for preenchido
+    financialValue.addEventListener('input', function () {
+        if (this.value) {
+            this.classList.remove('input-error');
+        }
+    });
+
+    startDate.addEventListener('input', function () {
+        if (this.value) {
+            this.classList.remove('input-error');
+        }
+    });
+
+    endDate.addEventListener('input', function () {
+        if (this.value) {
+            this.classList.remove('input-error');
+        }
+    });
+
     document.querySelector('#financial-calculator').addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -78,11 +102,7 @@ export const startUpdateValues = () => {
         if (resultContainer.classList.contains('display-active')) {
             resultContainer.style.display = 'none';
             resultContainer.classList.remove('display-active');
-        } 
-
-        var financialValue = document.getElementById('financial-value');
-        var startDate = document.getElementById('start-date');
-        var endDate = document.getElementById('end-date');
+        }
 
         // Obrigated fields
         if (!financialValue.value || !startDate.value || !endDate.value) {
@@ -105,13 +125,9 @@ export const startUpdateValues = () => {
 
         else {
             document.getElementById('error-message').style.display = 'none'; // Esconde a mensagem se tudo estiver preenchido
-            
             let updateValuesInstance = new UpdateValues();
             updateValuesInstance.updateValues();
 
-            resultContainer.style.display = 'block';
-            resultContainer.classList.add('display-active');
-            
         }
     });
 };
