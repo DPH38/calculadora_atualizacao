@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 // validaçao de data da correcao monetaria
+
 document.addEventListener('DOMContentLoaded', function () {
     var startDateInput = document.getElementById('start-date');
     var endDateInput = document.getElementById('end-date');
@@ -95,8 +95,11 @@ document.addEventListener('DOMContentLoaded', function () {
         startErrorElement.style.display = 'none';
         endErrorElement.style.display = 'none';
 
-        // Se uma data foi preenchida sem a outra
-        if ((startDateValue && !endDateValue) || (!startDateValue && endDateValue)) {
+        // Verifica se ambos os campos de data estão vazios
+        if (!startDateValue && !endDateValue) {
+            // Nenhuma ação é necessária ou você pode adicionar lógica específica aqui
+        } else if ((startDateValue && !endDateValue) || (!startDateValue && endDateValue)) {
+            // Se uma data foi preenchida sem a outra
             if (!startDateValue) {
                 startDateElement.classList.add('input-error');
                 startErrorElement.textContent = 'Informe a data de início!';
@@ -106,6 +109,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 endDateElement.classList.add('input-error');
                 endErrorElement.textContent = 'Informe a data de término!';
                 endErrorElement.style.display = 'block';
+            }
+        } else if (startDateValue && endDateValue) {
+            // Converter strings de data para objetos Date
+            let start = new Date(startDateValue);
+            let end = new Date(endDateValue);
+
+            // Verificar se a data de término é anterior à data de início
+            if (end < start) {
+                endDateElement.classList.add('input-error');
+                endErrorElement.textContent = 'A data de término não pode ser anterior à data de início!';
+                endErrorElement.style.display = 'block';
+                endDateElement.value = '';
             }
         }
     }
@@ -124,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
     endRateOnePercent.addEventListener('blur', function () {
         validateDates(startRateOnePercent, endRateOnePercent, rate1StartError, rate1EndError);
     });
+    
 });
 
 

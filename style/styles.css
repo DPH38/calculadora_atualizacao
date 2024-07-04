@@ -333,5 +333,16 @@ input[type="date"] {
     text-align: left;
     margin-left: 0%;
     background-color: #ffffff;   
-    
 }
+
+.no-interest {
+    /* Oculta a mensagem de erro por padrão */
+    color: #ffffff; /* Cor da fonte */
+    font-size: small;
+    margin: 10px;
+    background-color: #ad212b; /* Cor de fundo */
+    text-align: center;
+    border: .5px dotted #ffffff; /* Borda de 2px sólida com a cor #ad212b */
+}
+       
+

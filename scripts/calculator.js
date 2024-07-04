@@ -22,6 +22,7 @@ class UpdateValues {
 
     // Atualiza os valores
     async updateValues() {
+
         function swapCommaAndDot(str) {
             return str.replace(/\./g, '').replace(/,/g, '.');
         }
@@ -74,6 +75,10 @@ export const startUpdateValues = () => {
     var financialValue = document.getElementById('financial-value');
     var startDate = document.getElementById('start-date');
     var endDate = document.getElementById('end-date');
+    var startRateHalfPercent = document.getElementById('rate05start');
+    var endRateHalfPercent = document.getElementById('rate05end');
+    var startRateOnePercent = document.getElementById('rate1start');
+    var endRateOnePercent = document.getElementById('rate1end');
 
     // Adiciona um ouvinte de evento 'input' para remover a classe 'input-error' quando o campo for preenchido
     financialValue.addEventListener('input', function () {
@@ -103,31 +108,58 @@ export const startUpdateValues = () => {
             resultContainer.style.display = 'none';
             resultContainer.classList.remove('display-active');
         }
+        // Verifica se os campos estão preenchidos e se não possuem a classe 'input-error'
+        const fieldsWithError = [financialValue, startDate, endDate
+        ].filter(field => !field.value || field.classList.contains('input-error'));
 
-        // Obrigated fields
-        if (!financialValue.value || !startDate.value || !endDate.value) {
+        const rateDates = [startRateHalfPercent, endRateHalfPercent, startRateOnePercent,
+            endRateOnePercent].filter(field => field.classList.contains('input-error'));
+
+        const noRateHalfPercent = [startRateHalfPercent,
+             endRateHalfPercent].filter(field => !field.value);
+
+        const noRateOnePercent = [startRateOnePercent,
+             endRateOnePercent].filter(field => !field.value);
+
+        if (fieldsWithError.length > 0) {
             const errorMessage = document.getElementById('error-message');
             errorMessage.textContent = 'Por favor, preencha todos os campos obrigatórios antes de calcular.';
             errorMessage.style.display = 'block'; // Torna a mensagem visível
 
-            // Add 'input-error' class to fields that are not filled
-            if (!financialValue.value) {
-                financialValue.classList.add('input-error');
-            }
-            if (!startDate.value) {
-                startDate.classList.add('input-error');
-            }
-            if (!endDate.value) {
-                endDate.classList.add('input-error');
-            }
-            event.preventDefault();
+            // Adiciona a classe 'input-error' aos campos que não estão preenchidos
+            fieldsWithError.forEach(field => {
+                if (!field.value) {
+                    field.classList.add('input-error');
+                }
+            });
         }
+        else if (rateDates.length > 0) {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = 'Por favor, preencha todos os campos obrigatórios antes de calcular.';
+            errorMessage.style.display = 'block'; // Torna a mensagem visível
 
-        else {
+        } else {
+
             document.getElementById('error-message').style.display = 'none'; // Esconde a mensagem se tudo estiver preenchido
+            document.getElementById('no-interest05').style.display = 'none'; // Esconde a mensagem se tudo estiver preenchido
+            document.getElementById('no-interest1').style.display = 'none'; // Esconde a mensagem se tudo estiver preenchido
+
+            if (noRateHalfPercent.length > 0) {
+                const noRateHalf = document.getElementById('no-interest05');
+                noRateHalf.textContent = 'Não selecionado';
+                noRateHalf.classList.add('no-interest');
+                noRateHalf.style.display = 'inline'; // Torna a mensagem visível
+            }
+
+            if (noRateOnePercent.length > 0) {
+                const noRateOne = document.getElementById('no-interest1');
+                noRateOne.textContent = 'Não selecionado';
+                noRateOne.classList.add('no-interest');
+                noRateOne.style.display = 'inline'; // Torna a mensagem visível
+            }
+
             let updateValuesInstance = new UpdateValues();
             updateValuesInstance.updateValues();
-
         }
     });
 };
