@@ -98,19 +98,30 @@ const dataApi = async (index, startDate, endDate) => {
     if (!success) {
         window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
         location.reload();
-        return; // Encerra a execução da função aqui
+        return; 
     }
 
     return data;
 
 };
 
-function monthDiff(date1, date2) {
+/**
+ * Calculates the difference in months between two dates.
+ * @param {Date} date1 - The first date.
+ * @param {Date} date2 - The second date.
+ * @returns {number} - The difference in months.
+ */
+export function monthDiff(date1, date2) {
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
     const diffMonths = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30));
     return diffMonths;
 }
 
+/**
+ * Converts a string representation of a date in the format "dd/mm/yyyy" to a Date object.
+ * @param {string} dateString - The string representation of the date.
+ * @returns {Date} The converted Date object.
+ */
 export function convertStringToDate(dateString) {
     const dateParts = dateString.split("/");
     return new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);

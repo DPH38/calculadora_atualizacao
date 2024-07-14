@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var endDateInput = document.getElementById('end-date');
     const dateStartError = document.getElementById('start-date-error');
     const dateEndError = document.getElementById('end-date-error')
+    var resultContainer = document.querySelector('.result-container');
 
     startDateInput.addEventListener('blur', function () {
         var startDate = new Date(this.value);
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dateStartError.textContent = 'A data de início não pode ser anterior a 01/08/1994!';
             dateStartError.style.display = 'block';
             this.value = '';
+            resultContainer.classList.remove('visible');
         }
 
         startDateInput.addEventListener('input', function () {
@@ -62,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dateEndError.textContent = 'A data de término deve ser posterior à data de início!';
             dateEndError.style.display = 'block';
             this.value = '';
+            resultContainer.classList.remove('visible');
         }
 
         endDateInput.addEventListener('input', function () {
@@ -84,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const rate05EndError = document.getElementById('rate05-end-error');
     const rate1StartError = document.getElementById('rate1-start-error');
     const rate1EndError = document.getElementById('rate1-end-error');
+    var resultContainer = document.querySelector('.result-container');
 
     function validateDates(startDateElement, endDateElement, startErrorElement, endErrorElement) {
         let startDateValue = startDateElement.value.trim();
@@ -104,11 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 startDateElement.classList.add('input-error');
                 startErrorElement.textContent = 'Informe a data de início!';
                 startErrorElement.style.display = 'block';
+                resultContainer.classList.remove('visible');
             }
             if (!endDateValue) {
                 endDateElement.classList.add('input-error');
                 endErrorElement.textContent = 'Informe a data de término!';
                 endErrorElement.style.display = 'block';
+                resultContainer.classList.remove('visible');
             }
         } else if (startDateValue && endDateValue) {
             // Converter strings de data para objetos Date
@@ -121,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 endErrorElement.textContent = 'A data de término não pode ser anterior à data de início!';
                 endErrorElement.style.display = 'block';
                 endDateElement.value = '';
+                resultContainer.classList.remove('visible');
             }
         }
     }

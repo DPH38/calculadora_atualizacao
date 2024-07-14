@@ -9,13 +9,23 @@ body {
     align-items: center;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.calculator-container, .result-container {
+    width: 700px; /* Ajusta a largura das divs internas */
+    margin: 15px auto;
+    padding: 20px;
+}
+
 .calculator-container {
     background-color: #256A9D;
-    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255, 255, 255, .3);
-    margin: 20px auto;
-    width: 700px;
     backdrop-filter: blur(80px);
 
 }
@@ -250,7 +260,6 @@ input[type="date"] {
     }
 }
 
-
 .value-container input {
     width: 100%;
     /* Ajusta a largura do input para ocupar 100% da largura do contêiner */
@@ -268,56 +277,22 @@ input[type="date"] {
     display: none;
 }
 
-.display-active {
+.result-container.visible {
     display: block;
-    border: 1.5px solid #000000;
-    background-color: #f8f8f8;
-    /* Fundo cinza claro para suavidade */
-    color: #333333;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 25px auto;
-    max-width: 600px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Sombra mais pronunciada */
+    margin-top: 5px;
+    background-color: #ffffff;
+    border-radius: 15px;
 }
 
-.result-container.display-active h3 {
-    font-size: 1.4em;
-    /* Tamanho do título maior */
-    margin-bottom: 15px;
-    /* Maior espaçamento abaixo do título */
-    color: #007bff;
-    /* Cor azul para destaque */
-    text-align: left;
-    /* Centraliza o título */
-}
-
-.result-container.display-active p {
-    margin: 10px 0;
-    /* Ajuste de margens verticais */
-    font-size: 1em;
-    /* Tamanho da fonte consistente */
-    color: #333333;
-    /* Cor do texto mais suave */
-    line-height: 1.6;
-    padding: 5px 0;
-    transition: all 0.1s ease;
-    margin-left: 15px;
-}
-
-.result-container.display-active span {
-    color: #000000;
-}
 
 .error-message {
     color: #c30046;
     /* Cor da fonte */
-    margin: auto 0;
+    margin: 10px;
     /* Espaçamento */
     text-align: center;
     /* Centraliza o texto */
-    font-size: small;
+    font-size: large;
     /* Tamanho da fonte */
     background-color: #ffffff;
 }
@@ -343,6 +318,30 @@ input[type="date"] {
     background-color: #ad212b; /* Cor de fundo */
     text-align: center;
     border: .5px dotted #ffffff; /* Borda de 2px sólida com a cor #ad212b */
+    border-radius: 8px; /* Borda arredondada */
+    padding: 5px; /* Espaçamento interno */
 }
-       
 
+
+/* TABLE */
+
+.table {
+    display: table;
+    width: auto;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.principal {
+    display: table;
+
+}
+
+.zerofivepercentrate, .onepercentrate {
+    display: none;
+}
+
+.zerofivepercentrate.visible, .onepercentrate.visible {
+    display: table;
+
+}

@@ -12,120 +12,162 @@
     <link rel="icon" href="data:," />
   </head>
   <body>
-    <div class="calculator-container">
-      <h1>Atualize seu Valor</h1>
-      <form id="financial-calculator">
-        <div class="form-group">
-          <div class="value-container">
-            <label for="financial-value">INSIRA O VALOR INICIAL:</label>
-            <input
-              type="text"
-              id="financial-value"
-              name="financial-value"
-              required
-            />
-          </div>
-        </div>
-        <div class="correcao">
+    <div class="container">
+      <div class="calculator-container">
+        <h1>Atualize seu Valor</h1>
+        <form id="financial-calculator">
           <div class="form-group">
-            <label for="correction-index-cards">CORREÇÃO MONETÁRIA:</label>
-            <div class="correction-index-cards" id="correction-index-cards">
+            <div class="value-container">
+              <label for="financial-value">INSIRA O VALOR INICIAL:</label>
               <input
-                type="radio"
-                id="index1"
-                name="correction-index"
-                value="188"
+                type="text"
+                id="financial-value"
+                name="financial-value"
+                required
               />
-              <label for="index1" class="card">INPC</label>
-              <input
-                type="radio"
-                id="index2"
-                name="correction-index"
-                value="189"
-              />
-              <label for="index2" class="card">IGP-M</label>
-              <input
-                type="radio"
-                id="index3"
-                name="correction-index"
-                value="tjpr"
-              />
-              <label for="index3" class="card">ÍNDICE DO TJ/PR</label>
-              <input
-                type="radio"
-                id="index4"
-                name="correction-index"
-                value="433"
-              />
-              <label for="index4" class="card">IPCA</label>
             </div>
           </div>
-          <div class="date-container">
-            <div class="input-container">
-              <label for="start-date">Data de início:</label>
-              <input id="start-date" type="date" />
-              <div id="start-date-error" class="error-message"></div>
+          <div class="correcao">
+            <div class="form-group">
+              <label for="correction-index-cards">CORREÇÃO MONETÁRIA:</label>
+              <div class="correction-index-cards" id="correction-index-cards">
+                <input
+                  type="radio"
+                  id="index1"
+                  name="correction-index"
+                  value="188"
+                />
+                <label for="index1" class="card">INPC</label>
+                <input
+                  type="radio"
+                  id="index2"
+                  name="correction-index"
+                  value="189"
+                />
+                <label for="index2" class="card">IGP-M</label>
+                <input
+                  type="radio"
+                  id="index3"
+                  name="correction-index"
+                  value="tjpr"
+                />
+                <label for="index3" class="card">ÍNDICE DO TJ/PR</label>
+                <input
+                  type="radio"
+                  id="index4"
+                  name="correction-index"
+                  value="433"
+                />
+                <label for="index4" class="card">IPCA</label>
+              </div>
             </div>
-            <div class="input-container">
-              <label for="end-date">Data de término:</label>
-              <input id="end-date" type="date" />
-              <div id="end-date-error" class="error-message"></div>
-            </div>
-          </div>
-        </div>
-        <div class="date-interestrate">
-          <div class="rate-group rate05">
-            <div class="label-container">
-              <label>JUROS DE 0,5% A.M: <span id="no-interest05"></span> </label>
-            </div>
-            <div class="input-pair05">
+            <div class="date-container">
               <div class="input-container">
-                <label for="rate05start">Data de início:</label>
-                <input id="rate05start" type="date" />
-                <div id="rate05-start-error" class="error-message"></div>
+                <label for="start-date">Data de início:</label>
+                <input id="start-date" type="date" />
+                <div id="start-date-error" class="error-message"></div>
               </div>
               <div class="input-container">
-                <label for="rate05end">Data de término:</label>
-                <input id="rate05end" type="date" />
-                <div id="rate05-end-error" class="error-message"></div>
+                <label for="end-date">Data de término:</label>
+                <input id="end-date" type="date" />
+                <div id="end-date-error" class="error-message"></div>
               </div>
             </div>
           </div>
-          <div class="rate-group rate1">
-            <div class="label-container">
-              <label>JUROS DE 1,0% A.M: <span id="no-interest1"></span> </label>
-            </div>
-            <div class="input-pair01">
-              <div class="input-container">
-                <label for="rate1start">Data de início:</label>
-                <input id="rate1start" type="date" />
-                <div id="rate1-start-error" class="error-message"></div>
+          <div class="date-interestrate">
+            <div class="rate-group rate05">
+              <div class="label-container">
+                <label
+                  >JUROS DE 0,5% A.M: <span id="no-interest05"></span>
+                </label>
               </div>
-              <div class="input-container">
-                <label for="rate1end">Data de término:</label>
-                <input id="rate1end" type="date" />
-                <div id="rate1-end-error" class="error-message"></div>
+              <div class="input-pair05">
+                <div class="input-container">
+                  <label for="rate05start">Data de início:</label>
+                  <input id="rate05start" type="date" />
+                  <div id="rate05-start-error" class="error-message"></div>
+                </div>
+                <div class="input-container">
+                  <label for="rate05end">Data de término:</label>
+                  <input id="rate05end" type="date" />
+                  <div id="rate05-end-error" class="error-message"></div>
+                </div>
+              </div>
+            </div>
+            <div class="rate-group rate1">
+              <div class="label-container">
+                <label
+                  >JUROS DE 1,0% A.M: <span id="no-interest1"></span>
+                </label>
+              </div>
+              <div class="input-pair01">
+                <div class="input-container">
+                  <label for="rate1start">Data de início:</label>
+                  <input id="rate1start" type="date" />
+                  <div id="rate1-start-error" class="error-message"></div>
+                </div>
+                <div class="input-container">
+                  <label for="rate1end">Data de término:</label>
+                  <input id="rate1end" type="date" />
+                  <div id="rate1-end-error" class="error-message"></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <button type="submit">Calcular</button>
-      </form>
-      <div id="error-message" class="error-message"></div>
+          <button type="submit">Calcular</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+      </div>
       <div class="result-container">
-        <h3>RESULTADO:</h3>
-        <p>
-          Valor base em <span id="initialbase"></span>: R$
-          <span id="basevalue"></span>
-        </p>
-        <p>
-          Índice de correção (<span id="index-name"></span>) :
-          <span id="correctionindex"></span>
-        </p>
-        <p>
-          Valor corrigido em <span id="base-date"></span>: R$
-          <span id="correctedvalue"></span>
-        </p>
+        <table>
+          <caption>
+            RESULTADOS
+          </caption>
+          <tbody>
+            <tr class="principal">
+              <th scope="row">Verba</th>
+              <td>Principal</td>
+              <th scope="row">Data Inicial</th>
+              <td><span id="initialbase"></span></td>
+              <th scope="row">Data Final</th>
+              <td><span id="base-date"></span></td>
+              <th scope="row">Valor Inicial</th>
+              <td>R$ <span id="basevalue"></span></td>
+              <th scope="row">Indexador: <span id="index-name"></span></th>
+              <td><span id="correctionindex"></span></td>
+              <th scope="row">Valor Final</th>
+              <td>R$ <span id="correctedvalue"></span></td>
+            </tr>
+            <tr class="zerofivepercentrate">
+              <th scope="row">Verba</th>
+              <td>Juros 0,5% a.m</th>
+              <th scope="row">Data Inicial</th>
+              <td><span id="initialDate05"></span></td>
+              <th scope="row">Data Final</th>
+              <td><span id="endDate05"></span></td>
+              <th scope="row">Período em Meses</th>
+              <td colspan="1"><span id="months05Percent"></span></td>
+              <th scope="row">Percentual</th>
+              <td><span id="rate05Percent"></span></td>
+              <th scope="row">Valor dos Juros</th>
+              <td colspan="2">R$ <span id="interest05Percent"></span></td>
+            </tr>
+            <tr class="onepercentrate">
+              <th scope="row">Verba</th>
+              <td>Juros 1,0% a.m</td>
+              <th scope="row">Data Inicial</th>
+              <td><span id="initialDate1"></span></td>
+              <th scope="row">Data Final</th>
+              <td><span id="endDate1"></span></td>
+              <th scope="row">Período em Meses</th>
+              <td><span id="monthsOnePercent"></span></td>
+              <th scope="row">Percentual</th>
+              <td><span id="rateOnePercent"></span></td>
+              <td>R$ <span id="interestOnePercent"></span></td>
+            </tr>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-masker@1.2.0/build/vanilla-masker.min.js"></script>
