@@ -7,27 +7,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-}
-
-.calculator-container, .result-container {
-    width: 700px; /* Ajusta a largura das divs internas */
-    margin: 15px auto;
-    padding: 20px;
+    width: 800px;
 }
 
 .calculator-container {
+    width: 100%; /* Ajusta a largura das divs internas */
+    margin: 15px auto;
+    padding: 20px;
+    height: 100%;
     background-color: #256A9D;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255, 255, 255, .3);
-    backdrop-filter: blur(80px);
-
+    backdrop-filter: blur(1500px);
 }
 
 h1 {
@@ -85,7 +83,7 @@ button {
 
 button {
     background-color: rgba(11, 46, 74, 0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(1500px);
     border-color: #123548;
     color: #e0eff7;
     border: #a98400;
@@ -126,7 +124,7 @@ button:hover {
     cursor: pointer;
     color: #f7efd2;
     background-color: rgba(11, 46, 74, 0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(1500px);
     font-size: small;
     height: 25px;
     width: 10px;
@@ -143,7 +141,7 @@ button:hover {
     color: #123548;
     border-color: #123548;
     border: 2px solid #000000;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(1500px);
 
 }
 
@@ -239,11 +237,13 @@ input[type="date"] {
 }
 
 @media (max-width: 300px) {
-    .calculator-container {
+
+    .container {
         width: auto;
         padding: 10px;
+        /* Ajusta a largura do contêiner para 100% em telas menores */
     }
-
+    
     .correction-index-cards .card {
         flex: 1 1 calc(100% - 10px);
         /* Faz com que os cartões ocupem 100% do espaço disponível em telas menores */
@@ -258,6 +258,7 @@ input[type="date"] {
         width: 100%;
         /* Ajusta a largura do botão para 100% em telas menores */
     }
+
 }
 
 .value-container input {
@@ -278,10 +279,14 @@ input[type="date"] {
 }
 
 .result-container.visible {
-    display: block;
-    margin-top: 5px;
+    display: flex;
     background-color: #ffffff;
-    border-radius: 15px;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    margin: 15px auto;
+    padding: 20px;
+    justify-content: center;
 }
 
 
@@ -327,9 +332,9 @@ input[type="date"] {
 
 .table {
     display: table;
-    width: auto;
-    border-collapse: collapse;
-    margin-top: 10px;
+    width: 80%;
+    margin: 1px;
+    padding: 1px;
 }
 
 .principal {
@@ -345,3 +350,29 @@ input[type="date"] {
     display: table;
 
 }
+
+.principal {
+
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+}
+
+.principal th,  .zerofivepercentrate th{
+    background-color: #0091ff;
+    color: #ffffff;
+    font-size: small;
+    padding: 5px;
+    text-align: center;
+    font-weight: normal;
+    width: 15px;
+    white-space: wrap;
+}
+
+.principal td, .zerofivepercentrate td {
+    padding: 5px;
+    font-size: small;
+    text-align: center;
+    width: 15px;
+    white-space: wrap;
+
+}   

@@ -227,7 +227,7 @@ export const startUpdateValues = () => {
                 if (!field.value) {
                     field.classList.add('input-error');
                 }
-            });
+            });""
             resultContainer.classList.remove('visible');
         }
         else if (rateDates.length > 0) {

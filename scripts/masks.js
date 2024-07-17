@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const rate05EndError = document.getElementById('rate05-end-error');
     const rate1StartError = document.getElementById('rate1-start-error');
     const rate1EndError = document.getElementById('rate1-end-error');
-    var resultContainer = document.querySelector('.result-container');
 
     function validateDates(startDateElement, endDateElement, startErrorElement, endErrorElement) {
         let startDateValue = startDateElement.value.trim();
@@ -108,13 +107,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 startDateElement.classList.add('input-error');
                 startErrorElement.textContent = 'Informe a data de início!';
                 startErrorElement.style.display = 'block';
-                resultContainer.classList.remove('visible');
             }
             if (!endDateValue) {
                 endDateElement.classList.add('input-error');
                 endErrorElement.textContent = 'Informe a data de término!';
                 endErrorElement.style.display = 'block';
-                resultContainer.classList.remove('visible');
             }
         } else if (startDateValue && endDateValue) {
             // Converter strings de data para objetos Date
@@ -127,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 endErrorElement.textContent = 'A data de término não pode ser anterior à data de início!';
                 endErrorElement.style.display = 'block';
                 endDateElement.value = '';
-                resultContainer.classList.remove('visible');
             }
+
         }
     }
 
