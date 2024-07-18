@@ -24,7 +24,7 @@ Este projeto é uma calculadora de correção monetária desenvolvida com HTML, 
 
 ## Estrutura de Pastas
 
-'''markdown
+```plaintext
 .
 ├── index.html
 ├── style
@@ -33,7 +33,7 @@ Este projeto é uma calculadora de correção monetária desenvolvida com HTML, 
     ├── masks.js
     └── init.js
 
-'''plaitext
+````
 
 
 2. Abra o arquivo `index.html` no seu navegador.
