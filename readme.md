@@ -1,4 +1,4 @@
-```markdown
+
 # Projeto de Calculadora de Correção Monetária
 
 Este projeto é uma calculadora de correção monetária desenvolvida com HTML, CSS e JavaScript. Ele permite calcular a correção monetária com base em diferentes índices e taxas.
@@ -24,7 +24,6 @@ Este projeto é uma calculadora de correção monetária desenvolvida com HTML, 
 
 ## Estrutura de Pastas
 
-```plaintext
 .
 ├── index.html
 ├── style
@@ -32,14 +31,6 @@ Este projeto é uma calculadora de correção monetária desenvolvida com HTML, 
 └── scripts
     ├── masks.js
     └── init.js
-```
-
-## Como Usar
-
-1. Clone o repositório:
-    ```sh
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
 
 2. Abra o arquivo `index.html` no seu navegador.
 
@@ -52,25 +43,7 @@ Os estilos CSS estão definidos no arquivo [style/styles.css](style/styles.css).
 - **Botões**: `button`
 - **Mensagens de Erro**: `.input-error`, `.error-message`
 
-## Scripts
-
-Os scripts JavaScript estão localizados na pasta [scripts](scripts). Eles incluem:
-
-- **Máscaras**: [scripts/masks.js](scripts/masks.js)
-- **Inicialização**: [scripts/init.js](scripts/init.js)
-
-## Contribuição
-
-1. Faça um fork do projeto.
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`).
-4. Faça um push para a branch (`git push origin feature/nova-feature`).
-5. Crie um novo Pull Request.
-
 ## Licença
 
 Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-```
-
-Sinta-se à vontade para ajustar conforme necessário para se adequar melhor ao seu projeto.
