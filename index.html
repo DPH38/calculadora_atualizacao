@@ -118,56 +118,95 @@
         </form>
         <div id="error-message" class="error-message"></div>
       </div>
-      <div class="result-container">
-        <table>
-          <caption>
-            RESULTADOS
-          </caption>
-          <tbody>
-            <tr class="principal">
-              <th scope="row">Verba</th>
-              <td>Principal</td>
-              <th scope="row">Data Inicial</th>
-              <td><span id="initialbase"></span></td>
-              <th scope="row">Data Final</th>
-              <td><span id="base-date"></span></td>
-              <th scope="row">Valor Inicial</th>
-              <td>R$ <span id="basevalue"></span></td>
-              <th scope="row">Índice: <span id="index-name"></span></th>
-              <td><span id="correctionindex"></span></td>
-              <th scope="row">Valor Final</th>
-              <td>R$ <span id="correctedvalue"></span></td>
-            </tr>
-            <tr class="zerofivepercentrate">
-              <th scope="row">Verba</th>
-              <td>Juros 0,5% a.m</th>
-              <th scope="row">Data Inicial</th>
-              <td><span id="initialDate05"></span></td>
-              <th scope="row">Data Final</th>
-              <td><span id="endDate05"></span></td>
-              <th scope="row">Meses</th>
-              <td colspan="1"><span id="months05Percent"></span></td>
-              <th scope="row">% Final</th>
-              <td><span id="rate05Percent"></span></td>
-              <th scope="row">Valor Final</th>
-              <td colspan="2">R$ <span id="interest05Percent"></span></td>
-            </tr>
-            <tr class="onepercentrate">
-              <th scope="row">Verba</th>
-              <td>Juros 1,0% a.m</td>
-              <th scope="row">Data Inicial</th>
-              <td><span id="initialDate1"></span></td>
-              <th scope="row">Data Final</th>
-              <td><span id="endDate1"></span></td>
-              <th scope="row">Período em Meses</th>
-              <td><span id="monthsOnePercent"></span></td>
-              <th scope="row">Percentual</th>
-              <td><span id="rateOnePercent"></span></td>
-              <td>R$ <span id="interestOnePercent"></span></td>
-            </tr>
-          </tbody>
-          <tfoot></tfoot>
-        </table>
+      <div class="result-wrapper">
+        <h3>RESULTADOS</h3>
+        <div class="complete-display">
+          <div class="result-container visible">
+            <table class="principal">
+              <tr>
+                <th colspan="2" scope="col">Principal</th>
+              </tr>
+              <tr>
+                <th scope="row">Data Inicial</th>
+                <td><span id="initialbase"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Data Final</th>
+                <td><span id="base-date"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Inicial</th>
+                <td>R$ <span id="basevalue"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Índice: <span id="index-name"></span></th>
+                <td><span id="correctionindex"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Final</th>
+                <td>R$ <span id="correctedvalue"></span></td>
+              </tr>
+            </table>
+            <table class="zerofivepercentrate visible">
+              <tr>
+                <th colspan="2" scope="col">Juros 0,5% a.m</th>
+              </tr>
+              <tr>
+                <th scope="row">Data Inicial</th>
+                <td><span id="initialDate05"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Data Final</th>
+                <td><span id="endDate05"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Período em Meses</th>
+                <td><span id="months05Percent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Percentual Período</th>
+                <td><span id="rate05Percent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Juros</th>
+                <td>R$ <span id="interest05Percent"></span></td>
+              </tr>
+            </table>
+            <table class="onepercentrate visible">
+              <tr>
+                <th colspan="2" scope="col">Juros 1,0% a.m</th>
+              </tr>
+              <tr>
+                <th scope="row">Data Inicial</th>
+                <td><span id="initialDate1"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Data Final</th>
+                <td><span id="endDate1"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Período em Meses</th>
+                <td><span id="monthsOnePercent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Percentual Período</th>
+                <td><span id="rateOnePercent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Juros</th>
+                <td>R$ <span id="interestOnePercent"></span></td>
+              </tr>
+            </table>
+          </div>
+          <!-- Div separada para a linha de total -->
+          <div class="total-container">
+            <table>
+                <tr>
+                  <td><strong>Total: R$ <span id="Total"></span></strong></td>
+                </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-masker@1.2.0/build/vanilla-masker.min.js"></script>

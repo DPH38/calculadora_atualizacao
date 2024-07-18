@@ -113,6 +113,8 @@ class UpdateValues {
             monthsOnePercent = 0;
         }
 
+        let totalValue = adjustedValue + interest05Percent + interestOnePercent;
+
         // Atribuir valores aos spans
         document.getElementById('basevalue').textContent = financialValue.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         document.getElementById('index-name').textContent = `(${indexMapping[index]})`;
@@ -124,8 +126,8 @@ class UpdateValues {
         // juros 05%
         document.getElementById('initialDate05').textContent = startDate05;
         document.getElementById('endDate05').textContent = endDate05;
-        document.getElementById("months05Percent").textContent = months05Percent.toFixed(2);
-        document.getElementById("rate05Percent").textContent = rate05Percent.toFixed(2) + '%';
+        document.getElementById("months05Percent").textContent = months05Percent.toFixed(0);
+        document.getElementById("rate05Percent").textContent = (rate05Percent * 100).toFixed(2) + '%';
         document.getElementById("interest05Percent").textContent = interest05Percent.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         
         // vericar se foram selecinados juros de 05% e 1%, caso true mostrar os valores
@@ -133,12 +135,11 @@ class UpdateValues {
             document.querySelector('.zerofivepercentrate').classList.add('visible');
         };
 
-
         // juros 1%
         document.getElementById('initialDate1').textContent = startDate1;
         document.getElementById('endDate1').textContent = endDate1;
-        document.getElementById("monthsOnePercent").textContent = monthsOnePercent;
-        document.getElementById("rateOnePercent").textContent = rateOnePercent.toFixed(2) + '%';
+        document.getElementById("monthsOnePercent").textContent = monthsOnePercent.toFixed(0);
+        document.getElementById("rateOnePercent").textContent = (rateOnePercent * 100).toFixed(2) + '%';
         document.getElementById("interestOnePercent").textContent = interestOnePercent.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         
         // vericar se foram selecinados juros de 05% e 1%, caso true mostrar os valores
@@ -147,8 +148,8 @@ class UpdateValues {
             document.querySelector('.onepercentrate').classList.add('visible');
         };
 
-
-        document.querySelector('.result-container').classList.add('visible');
+        document.querySelector('.result-wrapper').classList.add('visible');
+        document.getElementById('Total').textContent = totalValue.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
     };
 
@@ -186,7 +187,7 @@ export const startUpdateValues = () => {
     document.querySelector('#financial-calculator').addEventListener('submit', (event) => {
         event.preventDefault();
 
-        var resultContainer = document.querySelector('.result-container');
+        var resultContainer = document.querySelector('.result-wrapper');
         var zerofivepercentrate = document.querySelector('.zerofivepercentrate');
         var onepercentrate = document.querySelector('.onepercentrate');
 
