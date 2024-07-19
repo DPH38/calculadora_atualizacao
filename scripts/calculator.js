@@ -25,22 +25,24 @@ class UpdateValues {
         return `${day}/${month}/${year}`;
     }
 
-    // Função para calcular a diferença entre duas datas em meses
+
+    // Função para calcular a diferença exata em dias entre duas datas
     monthDiff(d1, d2) {
-        let months;
-        months = (d2.getFullYear() - d1.getFullYear()) * 12;
-        months -= d1.getMonth();
-        months += d2.getMonth();
+        // Criar cópias das datas para evitar modificar os objetos originais
+        const date1 = new Date(d1.getFullYear(), d1.getMonth(), d1.getDate());
+        const date2 = new Date(d2.getFullYear(), d2.getMonth(), d2.getDate());
 
-        // Calcular a diferença em dias
-        const daysInMonth = new Date(d2.getFullYear(), d2.getMonth() + 1, 0).getDate();
-        const dayDiff = (d2.getDate() - d1.getDate()) / daysInMonth;
+        // Calcular a diferença em milissegundos
+        const diffInMs = date2 - date1;
 
-        // Adicionar a fração de mês à diferença de meses
-        months += dayDiff;
+        // Converter a diferença de milissegundos para dias
+        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-        return months;
+        // Retornar o valor absoluto da diferença em dias
+        return ((Math.abs(diffInDays))/30);
     }
+
+
 
     // Atualiza os valores
     async updateValues() {
@@ -122,14 +124,14 @@ class UpdateValues {
         document.getElementById('correctedvalue').textContent = adjustedValue.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         document.getElementById('base-date').textContent = localDateEnd;
         document.getElementById('initialbase').textContent = localDateStart;
-        
+
         // juros 05%
         document.getElementById('initialDate05').textContent = startDate05;
         document.getElementById('endDate05').textContent = endDate05;
         document.getElementById("months05Percent").textContent = months05Percent.toFixed(0);
         document.getElementById("rate05Percent").textContent = (rate05Percent * 100).toFixed(2) + '%';
         document.getElementById("interest05Percent").textContent = interest05Percent.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        
+
         // vericar se foram selecinados juros de 05% e 1%, caso true mostrar os valores
         if (months05Percent > 0) {
             document.querySelector('.zerofivepercentrate').classList.add('visible');
@@ -141,9 +143,9 @@ class UpdateValues {
         document.getElementById("monthsOnePercent").textContent = monthsOnePercent.toFixed(0);
         document.getElementById("rateOnePercent").textContent = (rateOnePercent * 100).toFixed(2) + '%';
         document.getElementById("interestOnePercent").textContent = interestOnePercent.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        
+
         // vericar se foram selecinados juros de 05% e 1%, caso true mostrar os valores
-        
+
         if (monthsOnePercent > 0) {
             document.querySelector('.onepercentrate').classList.add('visible');
         };
@@ -228,7 +230,7 @@ export const startUpdateValues = () => {
                 if (!field.value) {
                     field.classList.add('input-error');
                 }
-            });""
+            }); ""
             resultContainer.classList.remove('visible');
         }
         else if (rateDates.length > 0) {
