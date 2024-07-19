@@ -1,0 +1,12 @@
+{
+  "name": "calculadora",
+  "version": "1.0.0",
+  "description": "Este projeto é uma calculadora de correção monetária desenvolvida com HTML, CSS e JavaScript. Ele permite calcular a correção monetária com base em diferentes índices e taxas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Financeira</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/styles.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator-container">
+        <h1>Atualize seu Valor</h1>
+        <form id="financial-calculator">
+          <div class="form-group">
+            <div class="value-container">
+              <label for="financial-value">INSIRA O VALOR INICIAL:</label>
+              <input
+                type="text"
+                id="financial-value"
+                name="financial-value"
+                required
+              />
+            </div>
+          </div>
+          <div class="correcao">
+            <div class="form-group">
+              <label for="correction-index-cards">CORREÇÃO MONETÁRIA:</label>
+              <div class="correction-index-cards" id="correction-index-cards">
+                <input
+                  type="radio"
+                  id="index1"
+                  name="correction-index"
+                  value="188"
+                />
+                <label for="index1" class="card">INPC</label>
+                <input
+                  type="radio"
+                  id="index2"
+                  name="correction-index"
+                  value="189"
+                />
+                <label for="index2" class="card">IGP-M</label>
+                <input
+                  type="radio"
+                  id="index3"
+                  name="correction-index"
+                  value="tjpr"
+                />
+                <label for="index3" class="card">ÍNDICE DO TJ/PR</label>
+                <input
+                  type="radio"
+                  id="index4"
+                  name="correction-index"
+                  value="433"
+                />
+                <label for="index4" class="card">IPCA</label>
+              </div>
+            </div>
+            <div class="date-container">
+              <div class="input-container">
+                <label for="start-date">Data de início:</label>
+                <input id="start-date" type="date" />
+                <div id="start-date-error" class="error-message"></div>
+              </div>
+              <div class="input-container">
+                <label for="end-date">Data de término:</label>
+                <input id="end-date" type="date" />
+                <div id="end-date-error" class="error-message"></div>
+              </div>
+            </div>
+          </div>
+          <div class="date-interestrate">
+            <div class="rate-group rate05">
+              <div class="label-container">
+                <label
+                  >JUROS DE 0,5% A.M: <span id="no-interest05"></span>
+                </label>
+              </div>
+              <div class="input-pair05">
+                <div class="input-container">
+                  <label for="rate05start">Data de início:</label>
+                  <input id="rate05start" type="date" />
+                  <div id="rate05-start-error" class="error-message"></div>
+                </div>
+                <div class="input-container">
+                  <label for="rate05end">Data de término:</label>
+                  <input id="rate05end" type="date" />
+                  <div id="rate05-end-error" class="error-message"></div>
+                </div>
+              </div>
+            </div>
+            <div class="rate-group rate1">
+              <div class="label-container">
+                <label
+                  >JUROS DE 1,0% A.M: <span id="no-interest1"></span>
+                </label>
+              </div>
+              <div class="input-pair01">
+                <div class="input-container">
+                  <label for="rate1start">Data de início:</label>
+                  <input id="rate1start" type="date" />
+                  <div id="rate1-start-error" class="error-message"></div>
+                </div>
+                <div class="input-container">
+                  <label for="rate1end">Data de término:</label>
+                  <input id="rate1end" type="date" />
+                  <div id="rate1-end-error" class="error-message"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit">Calcular</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+      </div>
+      <div class="result-wrapper">
+        <h3>RESULTADOS</h3>
+        <div class="complete-display">
+          <div class="result-container visible">
+            <table class="principal">
+              <tr>
+                <th colspan="2" scope="col">Principal</th>
+              </tr>
+              <tr>
+                <th scope="row">Data Inicial</th>
+                <td><span id="initialbase"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Data Final</th>
+                <td><span id="base-date"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Inicial</th>
+                <td>R$ <span id="basevalue"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Índice: <span id="index-name"></span></th>
+                <td><span id="correctionindex"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Final</th>
+                <td>R$ <span id="correctedvalue"></span></td>
+              </tr>
+            </table>
+            <table class="zerofivepercentrate visible">
+              <tr>
+                <th colspan="2" scope="col">Juros 0,5% a.m</th>
+              </tr>
+              <tr>
+                <th scope="row">Data Inicial</th>
+                <td><span id="initialDate05"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Data Final</th>
+                <td><span id="endDate05"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Período em Meses</th>
+                <td><span id="months05Percent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Percentual Período</th>
+                <td><span id="rate05Percent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Juros</th>
+                <td>R$ <span id="interest05Percent"></span></td>
+              </tr>
+            </table>
+            <table class="onepercentrate visible">
+              <tr>
+                <th colspan="2" scope="col">Juros 1,0% a.m</th>
+              </tr>
+              <tr>
+                <th scope="row">Data Inicial</th>
+                <td><span id="initialDate1"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Data Final</th>
+                <td><span id="endDate1"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Período em Meses</th>
+                <td><span id="monthsOnePercent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Percentual Período</th>
+                <td><span id="rateOnePercent"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Valor Juros</th>
+                <td>R$ <span id="interestOnePercent"></span></td>
+              </tr>
+            </table>
+          </div>
+          <!-- Div separada para a linha de total -->
+          <div class="total-container">
+            <table>
+                <tr>
+                  <td><strong>Total: R$ <span id="Total"></span></strong></td>
+                </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-masker@1.2.0/build/vanilla-masker.min.js"></script>
+    <script src="scripts/masks.js"></script>
+    <script type="module" src="scripts/init.js"></script>
+  </body>
+</html>
