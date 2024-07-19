@@ -1,4 +1,4 @@
-const CACHE_NAME = "api-cache";
+
 
 /**
  * Array containing objects representing historical data for TJPR, these values aren't available in the API.
@@ -62,15 +62,7 @@ const pause = (duration) => new Promise((res) => setTimeout(res, duration));
  * @returns {Promise<any>} - A promise that resolves to the fetched data.
  */
 const dataApi = async (index, startDate, endDate) => {
-
     const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${index}/dados?formato=json&dataInicial=${startDate}&dataFinal=${endDate}`;
-
-    const cache = await caches.open(CACHE_NAME);
-    const cachedResponse = await cache.match(url);
-
-    if (cachedResponse) {
-        return await cachedResponse.json();
-    }
 
     let attempt = 0;
     let success = false;
@@ -82,8 +74,6 @@ const dataApi = async (index, startDate, endDate) => {
             const response = await fetch(url);
 
             if (response.ok) {
-                const responseClone = response.clone();
-                await cache.put(url, responseClone);
                 data = await response.json();
                 success = true;
             } else {
@@ -98,11 +88,10 @@ const dataApi = async (index, startDate, endDate) => {
     if (!success) {
         window.alert(`Serviço indisponível no momento, tente novamente mais tarde.`);
         location.reload();
-        return; 
+        return;
     }
 
     return data;
-
 };
 
 /**
