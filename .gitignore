@@ -4,4 +4,4 @@
 
 *.json
 
-server.js
+/server.js
